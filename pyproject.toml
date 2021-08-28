@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "pytonic"
+version = "0.1.0"
+description = "A Bot made using the Python Coding Language."
+authors = ["Yoshiboi18303 <yoshiboi18303.t@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+"discord.py" = "^1.7.3"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
