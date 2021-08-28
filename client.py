@@ -1,4 +1,4 @@
 import discord
 from discord.ext import commands
 
-client = commands.Bot(command_prefix="Py ", case_insensitive=True)
+client = commands.Bot(command_prefix="py ")

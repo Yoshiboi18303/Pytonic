@@ -1,7 +1,7 @@
 from flask import Flask
 app = Flask('app')
 
-def website(client_name, tagline, host, port):
+def start_website(client_name, tagline, host, port):
   client_name = str(client_name)
   tagline = str(tagline)
   host_address = str(host)
