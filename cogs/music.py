@@ -7,7 +7,7 @@ class Music(commands.Cog):
   def __init__(self, client):
     self.client = client
 
-  @commands.command(help="Makes the client join the Voice Channel you're in!", usage="py join")
+  @commands.command(help="Makes the client join the Voice Channel you're in!", usage="py join", aliases=['connect'])
   async def join(self, ctx):
     if ctx.author.voice is None:
       return await ctx.send("Please join a Voice Channel!")
@@ -18,7 +18,7 @@ class Music(commands.Cog):
       await ctx.voice_client.move_to(voice_channel)
     await ctx.send('Joined the Voice Channel!')
   
-  @commands.command(help="Makes the client disconnect from the Voice Channel it's in.", usage="py disconnect")
+  @commands.command(help="Makes the client disconnect from the Voice Channel it's in.", usage="py disconnect", aliases=['dc'])
   async def disconnect(self, ctx):
     await ctx.voice_client.disconnect()
     await ctx.send('Disconnected from the Voice Channel.')
