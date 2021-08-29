@@ -1,13 +1,12 @@
 import discord
 from discord.ext import commands
 import os
-# from cogs.ready import Ready
+import json
 # from website import start_website
 
 def ready_bot(client_token):
   from client import client
 
-  # Ready(client)
   # start_website("Pytonic", "An upcoming bot from Yoshiboi18303!", "0.0.0.0", 5000)
   @client.event
   async def on_ready():
@@ -25,6 +24,37 @@ def ready_bot(client_token):
       await ctx.send('Please pass in all required arguments.')
     elif isinstance(error, commands.MissingPermissions):
       await ctx.send('You don\'t have the correct permissions to run this command!')
+
+  @client.event
+  async def on_guild_join(guild):
+    with open('prefixes.json', 'r') as f:
+      prefixes = json.load(f)
+      guild.id = str(guild.id)
+    prefixes[guild.id] = "py "
+
+    with open('prefixes.json', 'w') as f:
+      json.dump(prefixes, f, indent=2)
+  
+  @client.event
+  async def on_guild_remove(guild):
+    with open('prefixes.json', 'r') as f:
+      prefixes = json.load(f)
+    guild.id = str(guild.id)
+    prefixes.pop(guild.id)   
+
+    with open('prefixes.json', 'w') as f:
+      json.dump(prefixes, f, indent=2)
+
+  @client.event
+  async def on_message(msg):
+    try: 
+      if msg.mentions[0] == client.user:
+        with open('prefixes.json', 'r') as f:
+          prefixes = json.load(f)
+        pre = prefixes[msg.guild.id]
+        await msg.channel.send(f'My prefix in {msg.guild.name} is {pre}.')
+    except:
+      pass
 
   @client.command(help="Loads a cog.")
   @commands.has_permissions(manage_guild=True)

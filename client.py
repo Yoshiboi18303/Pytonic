@@ -1,5 +1,5 @@
 import discord
 from discord.ext import commands
-# from help import CustomHelpCommand
+from utils.prefix_methods import get_prefix
 
-client = commands.Bot(command_prefix="py ", intents = discord.Intents.all())
+client = commands.Bot(command_prefix=get_prefix, intents = discord.Intents.all())
