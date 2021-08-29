@@ -1,7 +1,5 @@
 import discord
 from discord.ext import commands
-import os
-loginToken = os.environ['TOKEN']
 
 class Ready(commands.Cog):
   
